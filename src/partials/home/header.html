@@ -6,19 +6,15 @@
       <!-- header logo -->
       <div class="header__logo-wrapp">
         <a class="header__link" href="./index.html">
-          <img
-            class="header__logo"
-            src="./images/home/logo.png"
-            alt="Filmoteka"
-          />
-          Filmoteka
+          <img class="header__logo" src="./images/home/logo.png" alt="Filmoteka" width="24" height="24" />
+          <span class="header__logo-text">Filmoteka</span>
         </a>
       </div>
       <!-- Navigation -->
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__item">
-            <a class="nav__link" href="./index.html">Home</a>
+            <a class="nav__link nav__link--active" href="./index.html">Home</a>
           </li>
           <li class="nav__item">
             <a class="nav__link" href="./library.html">my library</a>
@@ -28,13 +24,13 @@
     </div>
 
     <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Movie search"
-      />
-      <button type="submit">img</button>
+      <input class="search-form__input" type="text" name="searchQuery" autocomplete="off" placeholder="Movie search" />
+
+      <button class="search-form__button" type="submit">
+        <img class="search-form__icon" src="./images/home/search.svg" alt="search  icon" width="12">
+      </button>
     </form>
+    <!-- Текст прописаний для теста СSS потім видалити, оскільки генерується динамічно -->
+    <p class="message">Search result not successful. Enter the correct movie name and</p>
   </div>
 </header>
