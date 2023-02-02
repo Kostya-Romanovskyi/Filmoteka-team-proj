@@ -1,1 +1,3 @@
-import './js/main';
+
+import './js/andrew_screept';
+
