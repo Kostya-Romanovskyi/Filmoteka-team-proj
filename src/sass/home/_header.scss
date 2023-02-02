@@ -1,0 +1,19 @@
+.header {
+    background-image: url("../images/home/bg-image-mob.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @media screen and(min-width:768px) {
+        background-image: url("../images/home/bg-image-tablet.png");
+    }
+    @media screen and(min-width:1280px) {
+        background-image: url("../images/home/bg-image-desctop.png");
+    }
+}
+.header__wrapp {
+    display: flex;
+    justify-content: space-between;
+}
+.search-form {
+    margin: 0 auto;
+}

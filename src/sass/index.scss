@@ -1,1 +1,10 @@
+@import "./variables";
 @import "./common";
+@import "./home/header";
+@import "./home/main";
+@import "./home/footer";
+@import "./library/header-lib";
+@import "./library/main-lib";
+@import "./library/footer-lib";
+@import "./modals/main-modal.scss";
+@import "./modals/footer-modal.scss";
