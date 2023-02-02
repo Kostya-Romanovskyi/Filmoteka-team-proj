@@ -1,0 +1,10 @@
+.footer {
+    background-color: $footer-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer__text {
+    display: flex;
+    justify-content: space-between;
+}
