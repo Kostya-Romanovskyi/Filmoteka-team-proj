@@ -1,5 +1,5 @@
         // <button id='main_btn'>Trending</button>
-        // <input id='search_muvie' type="text" name="input">
+        // <input id='search_movie' type="text" name="input">
         // <button id='search_btn'>Search</button>
 
 console.log(' -  * test * - ');
@@ -11,7 +11,7 @@ mainBtn.addEventListener('click', Trending);
 
 let searchBtn = document.getElementById('search_btn');
 searchBtn.addEventListener('click', Searh);
-let inputMuvie = document.getElementById('search_muvie');
+let inputMuvie = document.getElementById('search_movie');
 
 
 function Searh() {
