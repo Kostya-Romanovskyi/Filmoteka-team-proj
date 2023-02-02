@@ -9,11 +9,13 @@ const movieMarkup = document.querySelector('.movie-markup');
 
 function Searh(e) {
   e.preventDefault();
+
   // console.log(inputMuvie.value);
   if (!inputMuvie.value) {
     // console.log('no input');
     return;
   }
+  movieMarkup.innerHTML = '';
 
   //   console.log('Search');
 
@@ -33,14 +35,18 @@ function Searh(e) {
     .then(movies => {
       //   console.log('serch f', movies.results);
       localStorage.setItem('currentPageMuvie', JSON.stringify(movies.results));
-      Render(localStorage.getItem('currentPageMuvie'));
+    })
+    .catch(error => console.log(error));
+
+  fetchMovies()
+    .then(movies => {
+      //   console.log('serch f', movies.results);
+      Render(movies.results);
     })
     .catch(error => console.log(error));
 }
 
 function Trending() {
-  //   console.log('Trending');
-
   const fetchMovies = async () => {
     const response = await fetch(
       'https://api.themoviedb.org/3/trending/all/' +
@@ -59,38 +65,28 @@ function Trending() {
     })
     .catch(error => console.log(error));
 
-  Render(localStorage.getItem('currentPageMuvie'));
+  fetchMovies()
+    .then(movies => {
+      console.log('fee', movies.results);
+      Render(movies.results);
+    })
+    .catch(error => console.log(error));
 }
 
 Trending();
 
 function Render(movies) {
-  let arrayMovies = JSON.parse(movies);
-  //   console.log('Render', arrayMovies);
-  let resultHtml = [];
-  searchBtn.insertAdjacentHTML('afterend', '');
-  arrayMovies.forEach(movie => {
-    resultHtml.push('<li>Title ' + movie.title + '</li>');
-    resultHtml.push(
-      '<img src="' +
-        'https://image.tmdb.org/t/p/w500' +
-        movie.poster_path +
-        '" alt="' +
-        movie.title +
-        '"></li>'
-    );
-    resultHtml.push('<li>genre_ids ' + movie.genre_ids + '</li>');
-    resultHtml.push('<li>vote_average ' + movie.vote_average + '</li>');
-  });
+  const markupMovie = movies
+    .map(
+      movie =>
+        `<a class="movie__link" href=""><li class="movie__item">
+      <img class="movie__poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+      <p class="movie_title">${movie.title}</p>
+      <p class="movie_genre">${movie.genre_ids}</p>
+      <p class="movie_average">${movie.vote_average}</p>
+        </li></a>`
+    )
+    .join('');
 
-  movieMarkup.insertAdjacentHTML('afterend', resultHtml.join(''));
+  movieMarkup.insertAdjacentHTML('beforeend', markupMovie);
 }
-
-window.onload = function () {
-  Render(localStorage.getItem('currentPageMuvie'));
-};
-
-//https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
-
-// конкретний фільм
-// https://api.themoviedb.org/3/movie/550?api_key=50540b41e66ef631d8d57e13679f9024
