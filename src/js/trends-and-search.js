@@ -13,9 +13,9 @@ formEl.addEventListener('submit', search);
 if (!localStorage['genres']) {
   getGenres();
 }
+// genres = JSON.parse(localStorage.getItem('localGenres'));
+// genres = JSON.parse(localStorage['localGenres']);
 trending();
-
-genres = JSON.parse(localStorage.getItem('localGenres'));
 
 function search(evt) {
   evt.preventDefault();
@@ -82,6 +82,7 @@ function trending() {
           result: movies,
         })
       );
+      genres = JSON.parse(localStorage.getItem('localGenres'));
       render(movies.results);
     })
     .catch(error => {
