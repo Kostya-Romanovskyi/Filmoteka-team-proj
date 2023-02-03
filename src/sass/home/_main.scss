@@ -1,5 +1,26 @@
 .main {
-    flex: 1 1 auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+.movie-markup {
+    display: flex;
+    row-gap: 20px;
+    justify-content: center;
+    flex-flow: wrap;
+
+    @media screen and (min-width: 768px) {
+        justify-content: flex-start;
+        gap: 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        gap: 32px 15px;
+    }
 }
 .movie__link {
     color: $secondary-color;
