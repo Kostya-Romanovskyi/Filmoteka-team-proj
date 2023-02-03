@@ -149,7 +149,8 @@
   max-width: 336px;
   margin: 0 auto;
 
-  @media screen and(min-width:1280px) {
+  @media screen and(min-width:768px) {
+    transform: translateY(-47px);
     max-width: 394px;
   }
 }
@@ -165,7 +166,7 @@
   animation: animFw 4s linear infinite;
 
   @media screen and(min-width:1280px) {
-    animation: animFw2 4s linear infinite;
+    animation: animFw 4s linear infinite;
   }
 }
 .loader::after,
@@ -193,18 +194,18 @@
     width: 0;
   }
   100% {
-    width: 336px;
+    width: 100%;
   }
 }
 
-@keyframes animFw2 {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 394px;
-  }
-}
+// @keyframes animFw2 {
+//   0% {
+//     width: 0;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
 
 @keyframes coli1 {
   0% {
