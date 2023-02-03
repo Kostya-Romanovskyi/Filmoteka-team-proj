@@ -7,7 +7,6 @@
         padding-bottom: 60px;
     }
 }
-
 .movie-markup {
     display: flex;
     row-gap: 20px;
@@ -22,4 +21,7 @@
     @media screen and (min-width: 1280px) {
         gap: 32px 15px;
     }
+}
+.movie__link {
+    color: $secondary-color;
 }
