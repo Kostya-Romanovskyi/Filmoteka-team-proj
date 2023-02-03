@@ -1,63 +1,77 @@
 .main {
-  flex: 1 1 auto;
-
-  @media screen and(min-width:480px) {
-    padding-top: 20px;
-  }
-  @media screen and (min-width: 768px) {
-    padding-top: 60px;
-  }
+    flex: 1 1 auto;
+    @media screen and(min-width:480px) {
+        padding-top: 20px;
+    }
+    @media screen and (min-width: 768px) {
+        padding-top: 60px;
+    }
 }
 
 .movie-markup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+        justify-content: flex-start;
+        gap: 32px;
+    }
+    @media screen and (min-width: 1280px) {
+        gap: 32px 16px;
+    }
 }
 
 .card__img {
-  border-radius: 10px;
-  box-shadow: 0 0 10px #444;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #444;
 
-  @media screen and(min-width:480px) {
-    width: 280px;
-    height: 398px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 336px;
-    height: 455px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 394px;
-    height: 574px;
-  }
+    @media screen and(min-width:480px) {
+        width: 280px;
+        height: 398px;
+    }
+    @media screen and (min-width: 768px) {
+        width: 336px;
+        height: 455px;
+    }
+    @media screen and (min-width: 1280px) {
+        width: 394px;
+        height: 574px;
+    }
 }
 
 .card__name {
-  font-family: $main-font;
-  font-size: 20px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: $secondary-color;
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: $secondary-color;
 }
 
 .card__genre {
-  font-family: $main-font;
-  font-size: 20px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: $active-color;
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: $active-color;
 }
 
 .card__date {
-  font-family: $main-font;
-  font-size: 20px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: $active-color;
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: $active-color;
 }
 
 .card__content {
-  display: flex;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
 }
