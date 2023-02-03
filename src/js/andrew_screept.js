@@ -1,79 +1,88 @@
-const API_KEY = '50540b41e66ef631d8d57e13679f9024';
+const API_KEY = '63240915768e2fa639cf91287e69284e';
 const TRENDING_TIME = 'week';
 
-let mainBtn = document.getElementById('main_btn');
-mainBtn.addEventListener('click', Trending);
+Trending();
 
-let searchBtn = document.getElementById('search_btn');
-searchBtn.addEventListener('click', Searh);
-let inputMovie = document.getElementById('search_movie');
+const formEl = document.querySelector('.search-form');
+const message = document.querySelector('.message');
+const markupContainer = document.querySelector('.movie-markup');
 
+formEl.addEventListener('submit', Search);
 
-function Searh() {
+function Search(evt) {
+  evt.preventDefault();
+  let page = 1;
+  const inputValue = formEl.elements.searchQuery.value;
+  console.log(formEl.elements);
+  if (!inputValue) {
+    message.textContent =
+      'Search result not successful. Enter the correct movie name and';
+    return;
+  }
 
-    // console.log(inputMovie.value);
-    if (!inputMovie.value) {
-        console.log('no input');
-        return;
-    }
+  const fetchMovies = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputValue}&page=${page}`
+    );
+    const movies = await response.json();
+    return movies;
+  };
 
-    console.log('Search');
-
-    const fetchMovies = async () => {
-        const response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' +
-            API_KEY + '&language=en-US&query=' + inputMovie.value + '&page=1&include_adult=false');
-        const movies = await response.json();
-        return movies;
-    };
-
-    fetchMovies()
-        .then(movies => {
-            console.log('serch f', movies.results);
-            localStorage.setItem('currentPageMovie', JSON.stringify(movies.results));
+  fetchMovies()
+    .then(movies => {
+      Render(movies.results);
+      localStorage.setItem(
+        'currentPage',
+        JSON.stringify({
+          type: 'serched',
+          result: movies,
         })
-        .catch(error => console.log(error));
-
-
-
-    Render(localStorage.getItem('currentPageMovie'));
-
+      );
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function Trending() {
-    console.log('Trending');
+  const fetchTrending = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/trending/movie/${TRENDING_TIME}?api_key=${API_KEY}`
+    );
+    const movies = await response.json();
+    return movies;
+  };
 
-    const fetchMovies = async () => {
-        const response = await fetch('https://api.themoviedb.org/3/trending/all/' +
-            TRENDING_TIME + '?api_key=' + API_KEY);
-        const movies = await response.json();
-        return movies;
-    };
-
-    fetchMovies()
-        .then(movies => {
-            // console.log('f',movies.results);
-            localStorage.setItem('currentPageMovie', JSON.stringify(movies.results));
+  fetchTrending()
+    .then(movies => {
+      Render(movies.results);
+      localStorage.setItem(
+        'currentPage',
+        JSON.stringify({
+          type: 'trending',
+          result: movies,
         })
-        .catch(error => console.log(error));
-
-
-
-    Render(localStorage.getItem('currentPageMovie'));
-
+      );
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
-
 function Render(movies) {
-    let arraymovies = JSON.parse(movies);
-    console.log('Render', arraymovies);
-    let resultHtml = [];
-    searchBtn.insertAdjacentHTML("afterend", '');
-    arraymovies.forEach(movie => {
-        resultHtml.push('<li>Title ' + !movie.title ? movie.name : movie.title + '</li>');
-        resultHtml.push('<img src="' + !movie.poster_path ? '\images\no-image.jpg' : movie.poster_path + '" alt="'+ movie.title +'"></li>');
-        resultHtml.push('<li>genre_ids ' + movie.genre_ids + '</li>');
-        resultHtml.push('<li>vote_average ' + movie.vote_average + '</li>');
-    });
-    // console.log('Afrter  Render', resultHtml.join(''));
-    searchBtn.insertAdjacentHTML("afterend", resultHtml.join(''));
+  markupContainer.innerHTML = movies
+    .map(movie => {
+      return `
+    <li>
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${
+        movie.title
+      }">
+      <div>
+        <p class="card__title">${movie.title}</p>
+        <p class="card__genres">${movie.genre_ids}</p>
+        <p class="card__year">${parseInt(movie.release_date)}</p>
+      </div>
+    </li>`;
+    })
+    .join('');
 }
