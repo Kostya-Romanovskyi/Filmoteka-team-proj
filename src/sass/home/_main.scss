@@ -1,27 +1,90 @@
 .main {
-    padding-top: 20px;
-    padding-bottom: 40px;
-
+    flex: 1 1 auto;
+    @media screen and(min-width:480px) {
+        padding-top: 20px;
+    }
     @media screen and (min-width: 768px) {
         padding-top: 60px;
-        padding-bottom: 60px;
     }
 }
+
 .movie-markup {
     display: flex;
-    row-gap: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
     justify-content: center;
-    flex-flow: wrap;
+    margin-top: 20px;
+
+    @media screen and (min-width: 480px) {
+        margin-top: 0;
+    }
 
     @media screen and (min-width: 768px) {
         justify-content: flex-start;
         gap: 32px;
+        margin-top: 0;
     }
-
     @media screen and (min-width: 1280px) {
-        gap: 32px 15px;
+        gap: 32px 16px;
+        margin-top: 0;
     }
 }
-.movie__link {
+
+.card__img {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #444;
+
+    width: 280px;
+    height: 398px;
+
+    @media screen and (min-width: 768px) {
+        width: 336px;
+        height: 455px;
+    }
+    @media screen and (min-width: 1280px) {
+        width: 394px;
+        height: 574px;
+    }
+}
+
+.card__title {
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+
+    max-width: 300px;
+
+    margin-bottom: 3px;
+
+    text-transform: uppercase;
     color: $secondary-color;
+
+    @media screen and (min-width: 1280px) {
+        max-width: 394px;
+    }
+}
+.card__container {
+    display: flex;
+    align-items: center;
+}
+.card__genres {
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: $active-color;
+}
+
+.card__year {
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: $active-color;
+
+    padding-left: 4px;
 }
