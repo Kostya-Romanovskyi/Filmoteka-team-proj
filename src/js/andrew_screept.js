@@ -1,8 +1,3 @@
-        // <button id='main_btn'>Trending</button>
-        // <input id='search_movie' type="text" name="input">
-        // <button id='search_btn'>Search</button>
-
-console.log(' -  * test * - ');
 const API_KEY = '50540b41e66ef631d8d57e13679f9024';
 const TRENDING_TIME = 'week';
 
@@ -11,13 +6,13 @@ mainBtn.addEventListener('click', Trending);
 
 let searchBtn = document.getElementById('search_btn');
 searchBtn.addEventListener('click', Searh);
-let inputMuvie = document.getElementById('search_movie');
+let inputMovie = document.getElementById('search_movie');
 
 
 function Searh() {
 
-    // console.log(inputMuvie.value);
-    if (!inputMuvie.value) {
+    // console.log(inputMovie.value);
+    if (!inputMovie.value) {
         console.log('no input');
         return;
     }
@@ -26,7 +21,7 @@ function Searh() {
 
     const fetchMovies = async () => {
         const response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' +
-            API_KEY + '&language=en-US&query=' + inputMuvie.value + '&page=1&include_adult=false');
+            API_KEY + '&language=en-US&query=' + inputMovie.value + '&page=1&include_adult=false');
         const movies = await response.json();
         return movies;
     };
@@ -34,13 +29,13 @@ function Searh() {
     fetchMovies()
         .then(movies => {
             console.log('serch f', movies.results);
-            localStorage.setItem('currentPageMuvie', JSON.stringify(movies.results));
+            localStorage.setItem('currentPageMovie', JSON.stringify(movies.results));
         })
         .catch(error => console.log(error));
 
 
 
-    Render(localStorage.getItem('currentPageMuvie'));
+    Render(localStorage.getItem('currentPageMovie'));
 
 }
 
@@ -57,33 +52,28 @@ function Trending() {
     fetchMovies()
         .then(movies => {
             // console.log('f',movies.results);
-            localStorage.setItem('currentPageMuvie', JSON.stringify(movies.results));
+            localStorage.setItem('currentPageMovie', JSON.stringify(movies.results));
         })
         .catch(error => console.log(error));
 
 
 
-    Render(localStorage.getItem('currentPageMuvie'));
+    Render(localStorage.getItem('currentPageMovie'));
 
 }
 
 
-function Render(muvies) {
-    let arrayMuvies = JSON.parse(muvies);
-    console.log('Render', arrayMuvies);
+function Render(movies) {
+    let arraymovies = JSON.parse(movies);
+    console.log('Render', arraymovies);
     let resultHtml = [];
     searchBtn.insertAdjacentHTML("afterend", '');
-    arrayMuvies.forEach(muvie => {
-        resultHtml.push('<li>Title ' + muvie.title + '</li>');
-        // resultHtml.push('<img src="' + muvie.poster_path + '" alt="'+ muvie.title +'"></li>');
-        resultHtml.push('<li>genre_ids ' + muvie.genre_ids + '</li>');
-        resultHtml.push('<li>vote_average ' + muvie.vote_average + '</li>');
+    arraymovies.forEach(movie => {
+        resultHtml.push('<li>Title ' + !movie.title ? movie.name : movie.title + '</li>');
+        resultHtml.push('<img src="' + !movie.poster_path ? '\images\no-image.jpg' : movie.poster_path + '" alt="'+ movie.title +'"></li>');
+        resultHtml.push('<li>genre_ids ' + movie.genre_ids + '</li>');
+        resultHtml.push('<li>vote_average ' + movie.vote_average + '</li>');
     });
     // console.log('Afrter  Render', resultHtml.join(''));
     searchBtn.insertAdjacentHTML("afterend", resultHtml.join(''));
 }
-
-//https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
-
-// конкретний фільм
-// https://api.themoviedb.org/3/movie/550?api_key=50540b41e66ef631d8d57e13679f9024
