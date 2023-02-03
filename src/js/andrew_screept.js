@@ -74,11 +74,11 @@ function Render(movies) {
     .map(movie => {
       return `
     <li>
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${
+      <img src="https://image.tmdb.org/t/p/w500${!movie.poster_path ? '\images\no-image.jpg' : movie.poster_path}" alt="${
         movie.title
       }">
       <div>
-        <p class="card__title">${movie.title}</p>
+        <p class="card__title">${!movie.title ? movie.name : movie.title}</p>
         <p class="card__genres">${movie.genre_ids}</p>
         <p class="card__year">${parseInt(movie.release_date)}</p>
       </div>
