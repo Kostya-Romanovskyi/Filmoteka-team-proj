@@ -73,16 +73,20 @@ function Render(movies) {
   markupContainer.innerHTML = movies
     .map(movie => {
       return `
-    <li>
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${
-        movie.title
-      }">
+      <a class="card__link" href="">
+    <li class="card__item">
+      <img class="card__img" src="https://image.tmdb.org/t/p/w500${
+        movie.poster_path
+      }" alt="${movie.title}">
       <div>
         <p class="card__title">${movie.title}</p>
-        <p class="card__genres">${movie.genre_ids}</p>
-        <p class="card__year">${parseInt(movie.release_date)}</p>
+        <div class="card__container">
+        <p class="card__genres">${movie.genre_ids} | </p>
+        <p class="card__year"> ${parseInt(movie.release_date)}</p>
+        </div>
       </div>
-    </li>`;
+    </li>
+    </a>`;
     })
     .join('');
 }
