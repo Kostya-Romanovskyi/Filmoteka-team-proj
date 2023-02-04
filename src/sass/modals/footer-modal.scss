@@ -1,0 +1,202 @@
+.backdrop-footer {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: saturate(180%) blur(10px);
+    opacity: 1;
+    z-index: 300;
+    padding: 20px;
+    transition: transform 350ms cubic-bezier(.4, 0, .2, 1);
+
+    overflow: hidden;
+    overflow-y: auto;
+
+    &.is-hidden-footer {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.modal-box {
+    max-height: 100%;
+    width: 320px;
+    position: absolute;
+    padding: 15px;
+    overflow-x: hidden;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #ffffff;
+    transform: translate(-50%, -50%);
+    box-shadow: (0px 8px 43px rgba(0, 0, 0, 0.56));
+    border-radius: 10px;
+    overflow: auto;
+
+    @media screen and (min-width: 768px) {
+        width: 700px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 1000px;
+    }
+
+    transition: transform 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.modal-title {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-shadow: rgb(119, 119, 119) 1px 0 7px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 30px;
+    }
+}
+
+.grid {
+    display: grid;
+    gap: 10px;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media screen and (min-width: 768px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media screen and (min-width: 1280px) {
+        height: 100%;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+    }
+}
+
+.grid-img {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+        23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    transition: 300ms cubic-bezier(.4, 0, .2, 1);
+
+    &:hover {
+        transform: scale(1.10);
+    }
+
+    @media screen and (min-width: 768px) {
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.footer-modal-img {
+    height: 50px;
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+        23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+    @media screen and (min-width: 768px) {
+        height: 90px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        height: 120px;
+    }
+}
+
+.grid-box {
+    background-color: rgb(184, 184, 184);
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #000000;
+    font-size: 8px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 12px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        font-size: 15px;
+    }
+}
+
+.modal-box__btn {
+    fill: rgb(184, 184, 184);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-left: auto;
+    width: 22px;
+    height: 25px;
+
+    transition: fill 300ms cubic-bezier(.4, 0, .2, 1),
+        border-color 300ms cubic-bezier(.4, 0, .2, 1);
+
+    &:hover,
+    &:focus {
+        fill: #000000;
+    }
+
+    @media screen and (min-width: 768px) {
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    }
+
+}
+
+
+.footer-btn {
+    padding: 0;
+    margin-left: 5px;
+    height: 18px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    display: flex;
+    cursor: pointer;
+    border: transparent;
+    background-color: transparent;
+    position: relative;
+    color: #545454;
+    border-bottom: 1px solid;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+        line-height: 1.19;
+        position: relative;
+    }
+
+    transition: color 500ms cubic-bezier(.4, 0, .2, 1);
+
+    &:hover,
+    &:focus {
+        color: black;
+        transform: scale(1.04);
+    }
+
+    &:hover::after,
+    &:focus::after {
+        background-color: black;
+    }
+}
