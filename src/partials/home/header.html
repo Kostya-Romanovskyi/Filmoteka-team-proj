@@ -27,10 +27,16 @@
       <input class="search-form__input" type="text" name="searchQuery" autocomplete="off" placeholder="Movie search" />
 
       <button class="search-form__button" type="submit">
-        <img class="search-form__icon" src="./images/home/search.svg" alt="search  icon" width="12">
+        <img class="search-form__icon" src="./images/home/search.svg" alt="search  icon" width="12" />
       </button>
     </form>
-    <!-- Текст прописаний для теста СSS потім видалити, оскільки генерується динамічно -->
-    <p class="message">Search result not successful. Enter the correct movie name and</p>
+
+    <p class="message">
+      <!-- Search result not successful. Enter the correct movie name and -->
+    </p>
+
+    <div class="loader-container" hidden="true">
+      <span class="loader"></span>
+    </div>
   </div>
 </header>
