@@ -123,4 +123,4 @@ function render(movies) {
     .join('');
 }
 
-export { getTrendings, getMoviesByName };
+export { getTrendings, getMoviesByName, render };

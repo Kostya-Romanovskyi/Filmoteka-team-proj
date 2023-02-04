@@ -2,7 +2,7 @@ import axios from 'axios';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import '../sass/_pagination-btn.scss';
-import { render } from './trends-and-search.js';
+import { render } from './get-functions';
 
 const markupContainer = document.querySelector('.movie-markup');
 const formEl = document.querySelector('.search-form');
