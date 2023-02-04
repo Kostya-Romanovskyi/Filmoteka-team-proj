@@ -154,3 +154,5 @@ function getGenres() {
       console.log(error);
     });
 }
+
+export { render };

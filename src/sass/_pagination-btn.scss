@@ -1,0 +1,87 @@
+.tui-pagination {
+  height: 40px;
+  margin: 0;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.tui-pagination .tui-page-btn {
+  border: transparent;
+  height: 40px;
+  width: 40px;
+  padding-top: 13px;
+  font-weight: 500;
+  line-height: 1.33;
+
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    //background: #ff6b08;
+    border-color: #ff6b08;
+    border-radius: 5px;
+  }
+}
+
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+  color: #ffffff;
+  background: #ff6b08;
+  border-color: #ff6b08;
+  border-radius: 5px;
+  cursor: default;
+}
+
+.tui-pagination .tui-is-selected:hover,
+.tui-pagination .tui-is-selected:focus {
+  background-color: #ff6b08;
+}
+
+.tui-pagination .tui-first-child.tui-is-selected {
+  border-left: 1px solid #ff6b08;
+}
+
+.tui-pagination .tui-last-child.tui-is-selected {
+  border-right: 1px solid #ff6b08;
+}
+
+.tui-pagination .tui-ico-ellip {
+  margin-top: 5px;
+  vertical-align: middle;
+}
+
+.tui-pagination .tui-ico-first {
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.tui-pagination .tui-ico-prev {
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.tui-pagination .tui-ico-next {
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.tui-pagination .tui-ico-last {
+  vertical-align: top;
+  margin-top: 2px;
+  color: #000000;
+}
+
+.tui-pagination .tui-next-is-ellip,
+.tui-pagination .tui-last,
+.tui-pagination .tui-prev-is-ellip,
+.tui-pagination .tui-first {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .tui-pagination .tui-next-is-ellip,
+  .tui-pagination .tui-last,
+  .tui-pagination .tui-prev-is-ellip,
+  .tui-pagination .tui-first {
+    display: inline-block;
+  }
+}
