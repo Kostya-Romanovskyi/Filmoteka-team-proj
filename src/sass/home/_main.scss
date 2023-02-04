@@ -1,32 +1,26 @@
 .main {
     flex: 1 1 auto;
-    @media screen and(min-width:480px) {
-        padding-top: 20px;
-    }
+    margin-top: 20px;
+    margin-bottom: 40px;
+
     @media screen and (min-width: 768px) {
-        padding-top: 60px;
+        margin-top: 60px;
+        margin-bottom: 60px;
     }
 }
 
 .movie-markup {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    row-gap: 20px;
     justify-content: center;
-    margin-top: 20px;
-
-    @media screen and (min-width: 480px) {
-        margin-top: 0;
-    }
+    flex-flow: wrap;
 
     @media screen and (min-width: 768px) {
         justify-content: flex-start;
         gap: 32px;
-        margin-top: 0;
     }
     @media screen and (min-width: 1280px) {
-        gap: 32px 16px;
-        margin-top: 0;
+        gap: 32px 15px;
     }
 }
 
@@ -50,8 +44,8 @@
 
 .card__title {
     font-family: $main-font;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 12px;
+    line-height: 16px;
     font-weight: 500;
 
     max-width: 300px;
@@ -63,6 +57,9 @@
 
     @media screen and (min-width: 1280px) {
         max-width: 394px;
+
+        font-size: 20px;
+        line-height: 24px;
     }
 }
 .card__container {
@@ -70,23 +67,54 @@
     align-items: center;
 }
 .card__genres {
+    position: relative;
+
     font-family: $main-font;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 12px;
+    line-height: 16px;
     font-weight: 500;
-    text-transform: uppercase;
+
     color: $active-color;
 
-    max-width: 300px;
+    max-width: 280px;
+
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 1px;
+        right: -6px;
+
+        width: 2px;
+        height: 90%;
+
+        background-color: $active-color;
+
+        @media screen and (min-width: 1280px) {
+            right: -8px;
+        }
+    }
 }
 
 .card__year {
     font-family: $main-font;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 12px;
+    line-height: 16px;
+
     font-weight: 500;
     text-transform: uppercase;
     color: $active-color;
 
-    padding-left: 4px;
+    padding-left: 10px;
+
+    @media screen and (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 24px;
+
+        padding-left: 14px;
+    }
 }
