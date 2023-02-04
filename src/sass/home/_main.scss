@@ -109,6 +109,15 @@
     }
 }
 
+.movie-markup__message {
+    display: inline-block;
+    margin: 50px auto;
+    text-align: center;
+    color: rgb(206, 105, 105);
+    font-size: 40;
+    font-weight: 900;
+}
+
 .card__year {
     font-family: $main-font;
     font-size: 12px;
