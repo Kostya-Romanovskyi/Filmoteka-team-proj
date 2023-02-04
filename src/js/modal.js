@@ -4,6 +4,7 @@ const modal = document.querySelector('[data-modal]');
 const modalMarkup = document.querySelector('.modal-film');
 
 let closeModalBtn = '';
+let movieItem = null;
 
 openModal.addEventListener('click', onOpenModalClick);
 
@@ -13,6 +14,8 @@ function onOpenModalClick(e) {
 
   if (e.target !== e.currentTarget) {
     addMarkup(movieId);
+
+    addBtnListeners();
 
     closeModalBtn = document.querySelector('.close-modal');
     modal.classList.remove('is-hidden');
@@ -31,7 +34,7 @@ function addMarkup(id) {
     const parsedSettings = JSON.parse(savedSettings);
     const parsedGenres = JSON.parse(savedGenres);
 
-    const movieItem = parsedSettings.result.results.filter(
+    movieItem = parsedSettings.result.results.filter(
       a => a.id === Number(id)
     )[0];
 
@@ -94,8 +97,8 @@ function addMarkup(id) {
         </p>
       </div>
       <div class="modal-film__buttons">
-        <button class="modal_film__btn" type="button">add to Watched</button>
-        <button class="modal_film__btn" type="button">add to queue</button>
+        <button class="modal_film__btn" id="add_to_watched_btn" type="button">add to Watched</button>
+        <button class="modal_film__btn" id="add_to_queue_btn" type="button">add to queue</button>
       </div>
     </div>`;
   } catch (err) {
@@ -125,4 +128,30 @@ function closeModal() {
   modal.removeEventListener('click', onBackdropClick);
   document.removeEventListener('keydown', onEscClose);
   closeModalBtn.removeEventListener('click', onCloseModalClick);
+}
+
+function addBtnListeners() {
+  const addToWatchedBtn = document.querySelector('#add_to_watched_btn');
+  const addToQueueBtn = document.querySelector('#add_to_queue_btn');
+
+  addToWatchedBtn.addEventListener('click', () =>
+    addFilmToList('watched', movieItem)
+  );
+  addToQueueBtn.addEventListener('click', () =>
+    addFilmToList('queue', movieItem)
+  );
+}
+
+/*
+    @param 'watched' | 'queue' listType
+    @param { Film } film
+*/
+function addFilmToList(listType, film) {
+  const storageKey = listType;
+
+  const filmList = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+  filmList.push(film);
+
+  localStorage.setItem(storageKey, JSON.stringify(filmList));
 }
