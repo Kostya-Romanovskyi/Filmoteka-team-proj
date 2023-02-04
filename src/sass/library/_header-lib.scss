@@ -1,3 +1,63 @@
 .header--library {
-  background-color: rgb(104, 100, 100);
+  min-height: 230px;
+  padding: 40px 0 0 0;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url('/src/images/library/bg-library-mob.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+
+  @media screen and(min-width:768px) {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url('/src/images/library/bg-library-tablet.png');
+  }
+
+  @media screen and(min-width:1280px) {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url('/src/images/library/bg-library-desc.png');
+  }
+}
+.button-lib {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  width: 129.53px;
+  height: 44px;
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 14px 36.19px 12px;
+
+    @media screen and(min-width:768px) {
+        width: 148px;
+      }
+
+      @media screen and(min-width:1280px) {
+        height: 42px;
+      }
+
+  &:not(:last-child) {
+      margin-right: 20px;
+
+      @media screen and(min-width:768px) {
+          margin-right: 32px;
+        }
+
+      @media screen and(min-width:1280px) {
+          margin-right: 16px;
+      }
+    }
+}
+.button-lib:hover,
+.button-lib:focus {
+  background: #FF6B01;
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  border: 0;
+  transition: background-color .25s linear;
+}
+.buttons-lib {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 65px;
 }
