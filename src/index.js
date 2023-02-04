@@ -16,3 +16,4 @@ function addFilmToList(listType, film) {
 // addFilmToList('watched', { name: 'Titanic' });
 // addFilmToList('queue', { name: 'Clon' });
 import './js/andrew_screept';
+import './js/trends-and-search';
