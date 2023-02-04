@@ -10,7 +10,7 @@ const btnUp = {
       this.el.classList.add('btn-up_hiding');
       window.setTimeout(() => {
         this.el.classList.remove('btn-up_hiding');
-      }, 300);
+      }, 200);
     }
   },
   hide() {
@@ -22,7 +22,7 @@ const btnUp = {
       window.setTimeout(() => {
         this.el.classList.add('btn-up_hide');
         this.el.classList.remove('btn-up_hiding');
-      }, 300);
+      }, 200);
     }
   },
   addEventListener() {
