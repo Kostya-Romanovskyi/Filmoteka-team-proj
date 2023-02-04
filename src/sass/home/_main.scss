@@ -88,24 +88,7 @@
     @media screen and (min-width: 1280px) {
         font-size: 20px;
         line-height: 24px;
-        padding-right: 12px;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 1px;
-        right: -6px;
-        z-index: 1000;
-
-        width: 2px;
-        height: 90%;
-
-        background-color: $active-color;
-
-        @media screen and (min-width: 1280px) {
-            right: -8px;
-        }
+        padding-right: 10px;
     }
 }
 
