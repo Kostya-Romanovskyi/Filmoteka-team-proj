@@ -78,9 +78,17 @@
 
     max-width: 280px;
 
+    padding-right: 6px;
+    border-right: 2px solid $active-color;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     @media screen and (min-width: 1280px) {
         font-size: 20px;
         line-height: 24px;
+        padding-right: 12px;
     }
 
     &::after {
@@ -88,6 +96,7 @@
         position: absolute;
         top: 1px;
         right: -6px;
+        z-index: 1000;
 
         width: 2px;
         height: 90%;
@@ -109,12 +118,12 @@
     text-transform: uppercase;
     color: $active-color;
 
-    padding-left: 10px;
+    padding-left: 6px;
 
     @media screen and (min-width: 1280px) {
         font-size: 20px;
         line-height: 24px;
 
-        padding-left: 14px;
+        padding-left: 10px;
     }
 }
