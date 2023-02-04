@@ -1,4 +1,4 @@
-<header class="header--library">
+<header class="header">
   <!-- container -->
   <div class="container">
     <!-- header-wrapp -->
@@ -10,24 +10,36 @@
             class="header__logo"
             src="./images/home/logo.png"
             alt="Filmoteka"
+            width="24"
+            height="24"
           />
-          Filmoteka
+          <span class="header__logo-text">Filmoteka</span>
         </a>
       </div>
-
+      <!-- Navigation -->
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__item">
             <a class="nav__link" href="./index.html">Home</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="./library.html">my library</a>
+            <a class="nav__link nav__link--active" href="./library.html"
+              >my library</a
+            >
           </li>
         </ul>
       </nav>
     </div>
     <!-- Search buttons -->
-    <button type="button">Watched</button>
-    <button type="button">queue</button>
+    <div class="filter">
+      <ul class="filter__list">
+        <il class="filter__item">
+          <button class="button" type="button">Watched</button>
+        </il>
+        <il class="filter__item">
+          <button class="button" type="button">Queue</button>
+        </il>
+      </ul>
+    </div>
   </div>
 </header>
