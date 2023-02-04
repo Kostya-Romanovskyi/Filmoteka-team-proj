@@ -126,8 +126,8 @@ function render(movies) {
         <div>
         <p class="card__title">${movie.title}</p>
         <div class="card__container">
-        <p class="card__genres">${cardGenres} | </p>
-        <p class="card__year"> ${parseInt(movie.release_date) ?? ''}</p>
+        <p class="card__genres">${cardGenres}</p>
+        <p class="card__year">${parseInt(movie.release_date) ?? ''}</p>
         </div>
         </div>
         </li>
