@@ -10,12 +10,12 @@ const loaderContainer = document.querySelector('.loader-container');
 formEl.addEventListener('submit', search);
 
 // фетчим тренди та жанри
-trending();
 if (!localStorage['genres']) {
   getGenres();
 }
-genres = JSON.parse(localStorage.getItem('genres'));
-console.log(genres);
+// genres = JSON.parse(localStorage.getItem('localGenres'));
+// genres = JSON.parse(localStorage['localGenres']);
+trending();
 
 function search(evt) {
   evt.preventDefault();
@@ -44,7 +44,7 @@ function search(evt) {
           'Search result not successful. Enter the correct movie name and'
         );
       }
-      render(movies.results);
+
       localStorage.setItem(
         'currentPage',
         JSON.stringify({
@@ -52,6 +52,7 @@ function search(evt) {
           result: movies,
         })
       );
+      render(movies.results);
     })
     .catch(error => {
       console.log(error);
@@ -74,7 +75,6 @@ function trending() {
 
   fetchTrending()
     .then(movies => {
-      render(movies.results);
       localStorage.setItem(
         'currentPage',
         JSON.stringify({
@@ -82,6 +82,8 @@ function trending() {
           result: movies,
         })
       );
+      genres = JSON.parse(localStorage.getItem('localGenres'));
+      render(movies.results);
     })
     .catch(error => {
       console.log(error);
@@ -96,7 +98,7 @@ function render(movies) {
     .map(movie => {
       // заглушка для відсутньої картинки
       const imageSrc = !movie.poster_path
-        ? 'https://www.theoxygenstore.com/images/source/No-image.jpg'
+        ? 'https://image.tmdb.org/t/p/w500'
         : `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
       // const cardGenres = genres
@@ -105,7 +107,9 @@ function render(movies) {
       //       return genre.name;
       //     }
       //   })
+      //   .map(genre => genre.name)
       //   .join(' ');
+      // console.log(cardGenres);
 
       const cardGenres = genres.reduce((previousValue, genre) => {
         if (movie.genre_ids.includes(genre.id)) {
@@ -122,8 +126,8 @@ function render(movies) {
         <div>
         <p class="card__title">${movie.title}</p>
         <div class="card__container">
-        <p class="card__genres">${cardGenres} | </p>
-        <p class="card__year"> ${parseInt(movie.release_date) ?? ''}</p>
+        <p class="card__genres">${cardGenres}</p>
+        <p class="card__year">${parseInt(movie.release_date) ?? ''}</p>
         </div>
         </div>
         </li>
@@ -143,7 +147,8 @@ function getGenres() {
 
   fetchGenres()
     .then(data => {
-      localStorage.setItem('genres', JSON.stringify(data.genres));
+      console.log(typeof JSON.stringify(data.genres));
+      localStorage.setItem('localGenres', JSON.stringify(data.genres));
     })
     .catch(error => {
       console.log(error);
