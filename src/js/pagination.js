@@ -34,7 +34,7 @@ const page = pagination.getCurrentPage();
 function fetch() {
   fetchMovies(page).then(data => {
     markupContainer.innerHTML = '';
-    console.log(data);
+    // console.log(data);
     pagination.reset(data.total_results);
     render(data.results);
   });

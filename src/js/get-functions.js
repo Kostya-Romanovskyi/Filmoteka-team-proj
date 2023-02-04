@@ -104,21 +104,21 @@ function render(movies) {
         .join(', ');
 
       return `
-        <a class="card__link" href="">
         <li class="card__item" data-id=${movie.id}>
-        <img class="card__img" src="${imageSrc}" alt="${movie.title}">
-        <div>
-        <p class="card__title">${movie.title}</p>
-        <div class="card__container">
-        <p class="card__genres"
-        ${movie.genre_ids.length ? '' : 'hidden'}>${cardGenres} | </p>
-        <p class="card__year" ${movie.release_date.length ? '' : 'hidden'}> ${
-        parseInt(movie.release_date) ?? ''
-      }</p>
-        </div>
-        </div>
-        </li>
-        </a>`;
+          <a class="card__link" href="">
+            <img class="card__img" src="${imageSrc}" alt="${movie.title}">
+            <div>
+              <p class="card__title">${movie.title}</p>
+              <div class="card__container">
+                <p class="card__genres"
+                ${movie.genre_ids.length ? '' : 'hidden'}>${cardGenres} | </p>
+                <p class="card__year" ${
+                  movie.release_date.length ? '' : 'hidden'
+                }> ${parseInt(movie.release_date) ?? ''}</p>
+              </div>
+            </div>
+          </a>
+        </li> `;
     })
     .join('');
 }
