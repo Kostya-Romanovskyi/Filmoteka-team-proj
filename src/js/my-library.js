@@ -7,9 +7,13 @@ const markupContainer = document.querySelector('.movie-markup');
 btnQueue.addEventListener('click', renderLocalQueueMovies);
 btnWatched.addEventListener('click', renderLocalWatchedMovies);
 
+const inWatched = JSON.parse(localStorage.getItem('watched'));
+
+render(inWatched);
+
 function renderLocalWatchedMovies() {
   try {
-    const inWatched = JSON.parse(localStorage.getItem('watched'));
+    // const inWatched = JSON.parse(localStorage.getItem('watched'));
     render(inWatched);
   } catch (error) {
     console.log(error.name);
