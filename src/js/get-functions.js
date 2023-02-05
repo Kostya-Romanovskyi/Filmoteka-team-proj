@@ -45,7 +45,7 @@ function getMoviesByName(
   const message = document.querySelector('.message');
   const markupContainer = document.querySelector('.movie-markup');
 
-  loaderContainer.hidden = false; //
+  loaderContainer.hidden = false; // Включає спіннер
   fetchMovies(searchName, page, apiKey)
     .then(movies => {
       if (!movies.total_results) {
@@ -71,7 +71,7 @@ function getMoviesByName(
       console.log(error);
     })
     .finally(() => {
-      loaderContainer.hidden = true;
+      loaderContainer.hidden = true; // виключає спіннер
     });
 
   async function fetchMovies(searchName, page, apiKey) {
@@ -91,7 +91,7 @@ function render(movies) {
     .map(movie => {
       // заглушка для відсутньої картинки
       const imageSrc = !movie.poster_path
-        ? 'https://image.tmdb.org/t/p/w500'
+        ? 'https://cdn.pixabay.com/photo/2016/12/14/23/08/page-not-found-1907792_960_720.jpg'
         : `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
       const cardGenres = genres

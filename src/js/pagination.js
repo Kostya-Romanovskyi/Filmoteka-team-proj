@@ -9,13 +9,22 @@ const formEl = document.querySelector('.search-form');
 
 async function fetchMovies(page) {
   const url = 'https://api.themoviedb.org/3/trending/movie/week';
+  const key = '63240915768e2fa639cf91287e69284e';
   const opt = {
-    api_key: '63240915768e2fa639cf91287e69284e',
+    api_key: `${key}`,
     total_results: 100,
     page,
   };
   const meta = new URLSearchParams(opt);
   const response = await axios.get(`${url}?${meta}`);
+  // console.log(response.data.results);
+  localStorage.setItem(
+    'currentPage',
+    JSON.stringify({
+      type: 'trending',
+      result: response.data,
+    })
+  );
   return response.data;
 }
 
@@ -47,8 +56,9 @@ function paginationOn() {
     const currentPage = event.page;
     fetchMovies(currentPage).then(data => {
       markupContainer.innerHTML = '';
-      console.log(data);
+      // console.log(data);
       render(data.results);
+      // paginationGenres();
       window.scrollTo({
         top: 0,
         left: 0,
@@ -74,7 +84,15 @@ function onClickPagination() {
     };
     const meta = new URLSearchParams(opt);
     const response = await axios.get(`${url}?${meta}`);
-    console.log(response.data);
+    // console.log(response.data);
+    localStorage.setItem(
+      'currentPage',
+      JSON.stringify({
+        type: 'trending',
+        result: response.data,
+      })
+    );
+
     return response.data;
   }
 
@@ -93,7 +111,7 @@ function onClickPagination() {
   function queryfetch() {
     fetchQuery(page).then(data => {
       markupContainer.innerHTML = '';
-      console.log(data);
+      // console.log(data);
       queryPagination.reset(data.total_results);
       render(data.results);
     });
@@ -106,7 +124,7 @@ function onClickPagination() {
       const currentPage = event.page;
       fetchQuery(currentPage).then(data => {
         markupContainer.innerHTML = '';
-        console.log(data);
+        // console.log(data);
         render(data.results);
         window.scrollTo({
           top: 0,
