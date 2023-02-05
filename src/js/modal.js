@@ -112,11 +112,13 @@ function addMarkup(id) {
         </li>
         <li class="modal-film__item">
           <span class="item__label">Original Title</span>
-          <span class="item__content">${movieItem.original_title}</span>
+          <span class="item__content item__content-title">${
+            movieItem.original_title
+          }</span>
         </li>
         <li class="modal-film__item">
           <span class="item__label">Genre</span>
-          <span class="item__content">${genreId.join(', ')}</span>
+          <span class="item__content-genres">${genreId.join(', ')}</span>
         </li>
       </ul>
       <div class="modal-film__about">
