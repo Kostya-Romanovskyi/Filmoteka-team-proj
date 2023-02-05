@@ -526,24 +526,6 @@ button {
   display: inline-block;
 }
 
-.header--library {
-  min-height: 230px;
-  padding: 40px 0 0 0;
-  background-image: url("../images/home/bg-image-mob.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-@media screen and (min-width: 768px) {
-  .header--library {
-    background-image: url("../images/home/bg-image-tablet.png");
-  }
-}
-@media screen and (min-width: 1280px) {
-  .header--library {
-    background-image: url("../images/home/bg-image-desctop.png");
-  }
-}
-
 .filter {
   display: flex;
   justify-content: center;
@@ -572,8 +554,7 @@ button {
   }
 }
 
-.button,
-.button-lib {
+.button {
   display: inline-block;
   padding-top: 14px;
   padding-bottom: 12px;
@@ -590,8 +571,7 @@ button {
   border-radius: 5px;
 }
 @media screen and (min-width: 768px) {
-  .button,
-.button-lib {
+  .button {
     padding-left: 38px;
     padding-right: 38px;
     min-width: 136px;
@@ -599,35 +579,19 @@ button {
 }
 .button:hover,
 .button :focus,
-.button :active,
-.button-lib:hover,
-.button-lib :focus,
-.button-lib :active {
+.button :active {
   border: 1px solid #ff6b01;
   background: #ff6b01;
-  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  box-shadow: 0px 8px 43px rgba(255, 111, 9, 0.6);
   transition-property: background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
-.button__active,
-.button-lib__active {
+.button__active {
   border: 1px solid #ff6b01;
   background: #ff6b01;
-  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
-}
-
-.button-lib {
-  border: 1px solid black;
-  color: black;
-  background-color: #ffffff;
-}
-.button-lib:hover,
-.button-lib :focus,
-.button-lib :active {
-  color: #ffffff;
-  border: 1px solid #ff6b01;
+  box-shadow: 0px 8px 43px rgba(255, 111, 9, 0.6);
 }
 
 .backdrop {
