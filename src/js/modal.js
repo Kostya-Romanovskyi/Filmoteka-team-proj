@@ -64,6 +64,7 @@ function addMarkup(id) {
         width="240"
         height="357"
       />
+      <div class="modal-wrapper">
       <h2 class="title-film">${movieItem.title}</h2>
       <ul class="modal-film__list">
         <li class="modal-film__item">
@@ -99,6 +100,7 @@ function addMarkup(id) {
       <div class="modal-film__buttons">
         <button class="modal_film__btn" id="add_to_watched_btn" type="button">add to Watched</button>
         <button class="modal_film__btn" id="add_to_queue_btn" type="button">add to queue</button>
+      </div>
       </div>
     </div>`;
   } catch (err) {
