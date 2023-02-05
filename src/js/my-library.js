@@ -20,8 +20,8 @@ function renderLocalQueueMovies() {
 
 function renderLocalWatchedMovies() {
   try {
-    const inWatched = JSON.parse(localStorage.getItem('watched'));
-    render(inWatched);
+    const inQueue = JSON.parse(localStorage.getItem('queue'));
+    render(inQueue);
   } catch (error) {
     markupContainer.innerHTML =
       '<p class="movie-markup__message">Queue is empty</p>';
