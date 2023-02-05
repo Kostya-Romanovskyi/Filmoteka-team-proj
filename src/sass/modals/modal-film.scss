@@ -184,6 +184,19 @@
         color: $main-color;
         background-color: $active-color;
     }
+
+    &:disabled {
+        border: 1px solid #949393;
+        // background-color: transparent;
+        transition: color 0.25s linear, background-color 0.25s linear, border 0.25s linear;
+
+        &:hover,
+        &:focus {
+            border: 1px solid #949393;
+            color: #cccaca;
+            background-color: $main-color;
+        }
+    }
 }
 
 .overflow {

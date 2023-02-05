@@ -29,7 +29,7 @@ function getGenres(apiKey = '63240915768e2fa639cf91287e69284e') {
 
   fetchGenres()
     .then(data => {
-      console.log(typeof JSON.stringify(data.genres));
+      // console.log(typeof JSON.stringify(data.genres));
       localStorage.setItem('localGenres', JSON.stringify(data.genres));
     })
     .catch(error => {
