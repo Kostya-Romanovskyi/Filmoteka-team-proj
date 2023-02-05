@@ -114,7 +114,7 @@ function render(movies) {
                 ${movie.genre_ids.length ? '' : 'hidden'}>${cardGenres}</p>
                 <p class="card__year" ${
                   movie.release_date.length ? '' : 'hidden'
-                }> ${parseInt(movie.release_date) ?? ''}</p>
+                }> ${parseInt(movie.release_date)}</p>
               </div>
             </div>
           </a>
