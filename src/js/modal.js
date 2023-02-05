@@ -15,8 +15,6 @@ function onOpenModalClick(e) {
   if (e.target !== e.currentTarget) {
     addMarkup(movieId);
 
-    addBtnListeners();
-
     closeModalBtn = document.querySelector('.close-modal');
     modal.classList.remove('is-hidden');
     document.body.classList.add('overflow');
@@ -24,6 +22,8 @@ function onOpenModalClick(e) {
 
     closeModalBtn.addEventListener('click', onCloseModalClick);
     modal.addEventListener('click', onBackdropClick);
+
+    addBtnListeners();
   }
 }
 
@@ -36,16 +36,37 @@ function addMarkup(id) {
   try {
     const parsedSettings = JSON.parse(savedSettings);
     const parsedGenres = JSON.parse(savedGenres);
+
     const parsedWatched = JSON.parse(watched);
     const parsedQueue = JSON.parse(queue);
 
-    const parsedItems = [
-      ...parsedWatched,
-      ...parsedQueue,
-      ...parsedSettings.result.results,
-    ];
+    const parsedItems = [];
+
+    if (parsedWatched && parsedQueue) {
+      parsedItems.push(
+        ...parsedWatched,
+        ...parsedQueue,
+        ...parsedSettings.result.results
+      );
+    } else if (parsedQueue) {
+      parsedItems.push(
+        ...parsedQueue,
+
+        ...parsedSettings.result.results
+      );
+    } else if (parsedWatched) {
+      parsedItems.push(
+        ...parsedWatched,
+
+        ...parsedSettings.result.results
+      );
+    } else {
+      parsedItems.push(...parsedSettings.result.results);
+    }
 
     movieItem = parsedItems.filter(a => a.id === Number(id))[0];
+
+    console.log(movieItem);
 
     const genreId = [];
 
