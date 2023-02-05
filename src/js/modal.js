@@ -98,8 +98,14 @@ function addMarkup(id) {
         </p>
       </div>
       <div class="modal-film__buttons">
-        <button class="modal_film__btn" id="add_to_watched_btn" type="button">add to Watched</button>
-        <button class="modal_film__btn" id="add_to_queue_btn" type="button">add to queue</button>
+        <button class="modal_film__btn" id="add_to_watched_btn" type="button" ${getIsDisabled(
+          'watched',
+          id
+        )}>add to Watched</button>
+        <button class="modal_film__btn" id="add_to_queue_btn" type="button" ${getIsDisabled(
+          'queue',
+          id
+        )}>add to queue</button>
       </div>
       </div>
     </div>`;
@@ -136,12 +142,14 @@ function addBtnListeners() {
   const addToWatchedBtn = document.querySelector('#add_to_watched_btn');
   const addToQueueBtn = document.querySelector('#add_to_queue_btn');
 
-  addToWatchedBtn.addEventListener('click', () =>
-    addFilmToList('watched', movieItem)
-  );
-  addToQueueBtn.addEventListener('click', () =>
-    addFilmToList('queue', movieItem)
-  );
+  addToWatchedBtn.addEventListener('click', () => {
+    addToWatchedBtn.disabled = true;
+    addFilmToList('watched', movieItem);
+  });
+  addToQueueBtn.addEventListener('click', () => {
+    addToQueueBtn.disabled = true;
+    addFilmToList('queue', movieItem);
+  });
 }
 
 /*
@@ -156,4 +164,20 @@ function addFilmToList(listType, film) {
   filmList.push(film);
 
   localStorage.setItem(storageKey, JSON.stringify(filmList));
+}
+
+function getIsDisabled(listType, filmId) {
+  const filmList = JSON.parse(localStorage.getItem(listType));
+
+  if (!filmList) {
+    return '';
+  }
+
+  const isInList = filmList.find(film => Number(filmId) === film.id);
+
+  if (isInList) {
+    return 'disabled';
+  }
+
+  return '';
 }
