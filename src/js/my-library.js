@@ -18,7 +18,7 @@ try {
 
 function renderLocalWatchedMovies() {
   try {
-    // const inWatched = JSON.parse(localStorage.getItem('watched'));
+    const inWatched = JSON.parse(localStorage.getItem('watched'));
     render(inWatched);
   } catch (error) {
     console.log(error.name);
