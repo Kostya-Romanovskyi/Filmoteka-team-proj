@@ -64,14 +64,15 @@ function addMarkup(id) {
         width="240"
         height="357"
       />
+      <div class="modal-wrapper">
       <h2 class="title-film">${movieItem.title}</h2>
       <ul class="modal-film__list">
         <li class="modal-film__item">
           <span class="item__label">Vote / Votes</span>
           <span class="item__content"
-            ><span class="item__content--rating">${
-              movieItem.vote_average
-            }</span> /<span
+            ><span class="item__content--rating">${movieItem.vote_average.toFixed(
+              1
+            )}</span> /<span
               class="item__content--votes"
               >${movieItem.vote_count}</span
             >
@@ -79,7 +80,7 @@ function addMarkup(id) {
         </li>
         <li class="modal-film__item">
           <span class="item__label">Popularity</span>
-          <span class="item__content">${movieItem.popularity}</span>
+          <span class="item__content">${movieItem.popularity.toFixed(1)}</span>
         </li>
         <li class="modal-film__item">
           <span class="item__label">Original Title</span>
@@ -105,6 +106,7 @@ function addMarkup(id) {
           'queue',
           id
         )}>add to queue</button>
+      </div>
       </div>
     </div>`;
   } catch (err) {

@@ -45,7 +45,7 @@ function getMoviesByName(
   const message = document.querySelector('.message');
   const markupContainer = document.querySelector('.movie-markup');
 
-  loaderContainer.hidden = false; //
+  loaderContainer.hidden = false; // Включає спіннер
   fetchMovies(searchName, page, apiKey)
     .then(movies => {
       if (!movies.total_results) {
@@ -71,7 +71,7 @@ function getMoviesByName(
       console.log(error);
     })
     .finally(() => {
-      loaderContainer.hidden = true;
+      loaderContainer.hidden = true; // виключає спіннер
     });
 
   async function fetchMovies(searchName, page, apiKey) {
@@ -91,7 +91,7 @@ function render(movies) {
     .map(movie => {
       // заглушка для відсутньої картинки
       const imageSrc = !movie.poster_path
-        ? 'https://image.tmdb.org/t/p/w500'
+        ? 'https://cdn.pixabay.com/photo/2016/12/14/23/08/page-not-found-1907792_960_720.jpg'
         : `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
       const cardGenres = genres
@@ -103,8 +103,7 @@ function render(movies) {
         .map(genre => genre.name)
         .join(', ');
 
-      return `
-        <a class="card__link" href="">
+      return `<a class="card__link" href="">
         <li class="card__item" data-id=${movie.id}>
         <img class="card__img" src="${imageSrc}" alt="${movie.title}">
         <div>
@@ -112,7 +111,7 @@ function render(movies) {
         <div class="card__container">
         <p class="card__genres"
         ${movie.genre_ids.length ? '' : 'hidden'}>${cardGenres}</p>
-        <p class="card__year" ${movie.release_date.length ? '' : 'hidden'}> ${
+        <p class="card__year" ${movie.release_date ? '' : 'hidden'}> ${
         parseInt(movie.release_date) ?? ''
       }</p>
         </div>
