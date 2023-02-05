@@ -75,7 +75,7 @@
     }
     @media screen and(min-width:1024px) {
         width: 375px;
-        height: 478px;
+        height: 520px;
         margin-right: 16px;
     }
 }
@@ -111,9 +111,22 @@
     font-size: 12px;
     line-height: 1.33;
 }
+.item__content-title {
+    max-width: 110px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.33;
+}
+.item__content-genres {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+}
 .item__content--rating {
     display: inline-block;
     text-align: center;
+    padding-top: 2px;
     width: 36px;
     color: $main-color;
     background-color: $active-color;
@@ -163,10 +176,11 @@
     }
 }
 .modal_film__btn {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     text-align: center;
     text-transform: uppercase;
+    font-weight: 500;
     cursor: pointer;
     width: 110px;
     height: 44px;
