@@ -70,9 +70,9 @@ function addMarkup(id) {
         <li class="modal-film__item">
           <span class="item__label">Vote / Votes</span>
           <span class="item__content"
-            ><span class="item__content--rating">${
-              movieItem.vote_average
-            }</span> /<span
+            ><span class="item__content--rating">${movieItem.vote_average.toFixed(
+              1
+            )}</span> /<span
               class="item__content--votes"
               >${movieItem.vote_count}</span
             >
@@ -80,7 +80,7 @@ function addMarkup(id) {
         </li>
         <li class="modal-film__item">
           <span class="item__label">Popularity</span>
-          <span class="item__content">${movieItem.popularity}</span>
+          <span class="item__content">${movieItem.popularity.toFixed(1)}</span>
         </li>
         <li class="modal-film__item">
           <span class="item__label">Original Title</span>
