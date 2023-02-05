@@ -21,7 +21,7 @@ function getTrendings(trendingTime, apiKey) {
       console.log(error);
     })
     .finally(() => {
-      // loaderContainer.hidden = true; // виключає спінер
+      loaderContainer.hidden = true; // виключає спінер
     });
 
   async function fetchTrending(
@@ -71,7 +71,7 @@ function getMoviesByName(
       console.log(error);
     })
     .finally(() => {
-      // loaderContainer.hidden = true; // виключає спіннер
+      loaderContainer.hidden = true; // виключає спіннер
     });
 
   async function fetchMovies(searchName, page, apiKey) {

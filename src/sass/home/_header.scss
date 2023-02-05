@@ -163,10 +163,10 @@
   background: #ff8000;
   box-shadow: 0 0 10px rgba(255, 196, 0, 0.9);
   box-sizing: border-box;
-  animation: animFw 4s linear infinite;
+  animation: animFw 700ms linear infinite;
 
   @media screen and(min-width:1280px) {
-    animation: animFw 1s linear infinite;
+    animation: animFw 700ms linear infinite;
   }
 }
 .loader::after,
