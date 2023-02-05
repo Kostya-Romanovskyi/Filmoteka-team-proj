@@ -7,7 +7,16 @@ const markupContainer = document.querySelector('.movie-markup');
 btnQueue.addEventListener('click', renderLocalQueueMovies);
 btnWatched.addEventListener('click', renderLocalWatchedMovies);
 
-function renderLocalQueueMovies() {
+try {
+  const inWatched = JSON.parse(localStorage.getItem('watched'));
+  render(inWatched);
+} catch (error) {
+  console.log(error.name);
+  markupContainer.innerHTML =
+    '<p class="movie-markup__message">Watched is empty </p>';
+}
+
+function renderLocalWatchedMovies() {
   try {
     const inWatched = JSON.parse(localStorage.getItem('watched'));
     render(inWatched);
@@ -18,10 +27,10 @@ function renderLocalQueueMovies() {
   }
 }
 
-function renderLocalWatchedMovies() {
+function renderLocalQueueMovies() {
   try {
-    const inWatched = JSON.parse(localStorage.getItem('watched'));
-    render(inWatched);
+    const inQueue = JSON.parse(localStorage.getItem('queue'));
+    render(inQueue);
   } catch (error) {
     markupContainer.innerHTML =
       '<p class="movie-markup__message">Queue is empty</p>';

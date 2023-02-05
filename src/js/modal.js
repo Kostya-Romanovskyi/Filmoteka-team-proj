@@ -30,13 +30,22 @@ function onOpenModalClick(e) {
 function addMarkup(id) {
   const savedSettings = localStorage.getItem('currentPage');
   const savedGenres = localStorage.getItem('localGenres');
+  const watched = localStorage.getItem('watched');
+  const queue = localStorage.getItem('queue');
+
   try {
     const parsedSettings = JSON.parse(savedSettings);
     const parsedGenres = JSON.parse(savedGenres);
+    const parsedWatched = JSON.parse(watched);
+    const parsedQueue = JSON.parse(queue);
 
-    movieItem = parsedSettings.result.results.filter(
-      a => a.id === Number(id)
-    )[0];
+    const parsedItems = [
+      ...parsedWatched,
+      ...parsedQueue,
+      ...parsedSettings.result.results,
+    ];
+
+    movieItem = parsedItems.filter(a => a.id === Number(id))[0];
 
     const genreId = [];
 
