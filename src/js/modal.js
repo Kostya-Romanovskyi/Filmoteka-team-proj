@@ -66,8 +66,6 @@ function addMarkup(id) {
 
     movieItem = parsedItems.filter(a => a.id === Number(id))[0];
 
-    console.log(movieItem);
-
     const genreId = [];
 
     parsedGenres.map(a => {
