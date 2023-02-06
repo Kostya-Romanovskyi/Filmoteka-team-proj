@@ -54,7 +54,7 @@ function getTrends() {
       pagination.reset(data.total_results);
       render(data.results);
     })
-    .catch(() => {
+    .catch(error => {
       console.log(error);
     })
     .finally(() => {
@@ -78,7 +78,7 @@ function trendsPaginationOn() {
           behavior: 'smooth',
         });
       })
-      .catch(() => {
+      .catch(error => {
         console.log(error);
       })
       .finally(() => {
