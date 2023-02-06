@@ -76,6 +76,7 @@
   width: 242px;
   @media screen and(min-width: 767px) {
     width: 264px;
+    height: 373px;
     margin-right: 68px;
   }
   @media screen and(min-width:1024px) {
@@ -115,6 +116,9 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  @media screen and(min-width:1024px) {
+    max-width: 220px;
+  }
 }
 .item__content-title {
   max-width: 110px;
@@ -124,9 +128,13 @@
   line-height: 1.33;
 }
 .item__content-genres {
+  max-width: 110px;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  @media screen and(min-width:1024px) {
+    max-width: 220px;
+  }
 }
 .item__content--rating {
   display: inline-block;
