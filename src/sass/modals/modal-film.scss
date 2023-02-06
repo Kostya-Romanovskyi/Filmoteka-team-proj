@@ -61,10 +61,14 @@
     width: 30px;
     height: 30px;
 }
-.close__icon:hover,
-.close__icon:focus {
-    fill: $active-color;
+
+.close-icon {
+    background-color: transparent;
 }
+// .close__icon:hover,
+// .close__icon:focus {
+//     fill: $active-color;
+// }
 .modal-film__poster {
     border-radius: 5px;
     margin-bottom: 20px;
