@@ -111,9 +111,9 @@ function render(movies) {
               <p class="card__title">${movie.title}</p>
               <div class="card__container">
                 <p class="card__genres"
-                ${movie.genre_ids.length ? '' : 'hidden'}>${cardGenres}</p>
+                ${movie.genre_ids?.length ? '' : 'hidden'}>${cardGenres}</p>
                 <p class="card__year" ${
-                  movie.release_date.length ? '' : 'hidden'
+                  movie.release_date?.length ? '' : 'hidden'
                 }> ${parseInt(movie.release_date)}</p>
               </div>
             </div>
