@@ -80,9 +80,7 @@ function addMarkup(id) {
 
     modalMarkup.innerHTML = `<div class="modal-film__content">
       <button class="close-modal" type="button">
-        <svg class="close__icon" width="14" height="14">
-          <use href="./images/home/close.svg#close-icon"></use>
-        </svg>
+        <img class="close-icon" src="https://st2.depositphotos.com/47577860/45955/v/450/depositphotos_459558608-stock-illustration-close-delete-solid-icon-solid.jpg" width="30" height="30">
       </button>
       <img
         class="modal-film__poster"
@@ -112,11 +110,13 @@ function addMarkup(id) {
         </li>
         <li class="modal-film__item">
           <span class="item__label">Original Title</span>
-          <span class="item__content">${movieItem.original_title}</span>
+          <span class="item__content item__content-title">${
+            movieItem.original_title
+          }</span>
         </li>
         <li class="modal-film__item">
           <span class="item__label">Genre</span>
-          <span class="item__content">${genreId.join(', ')}</span>
+          <span class="item__content-genres">${genreId.join(', ')}</span>
         </li>
       </ul>
       <div class="modal-film__about">

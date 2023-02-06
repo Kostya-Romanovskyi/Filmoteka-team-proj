@@ -1,5 +1,13 @@
+//BREAKPOINTS
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1024px;
+
 // FONT
 $main-font: 'Roboto', sans-serif;
+
+$line-height: calc(16 / 12);
+$font-weight: 500;
 
 // COLOR
 $main-color: #ffffff;
@@ -8,7 +16,14 @@ $active-color: #ff6b01;
 $footer-color: #545454;
 $modal-primary-text: #8c8c8c;
 
+$button-header-library: rgba(255, 111, 9, 0.6);
+
 // BACKGROUND-COLOR
 $main-bg-color: #e5e5e5;
 $bg-footer-color: #f7f7f7;
 $red-line-color: #ff001b;
+
+
+
+
+
