@@ -183,6 +183,7 @@ function closeModal() {
   modal.removeEventListener('click', onBackdropClick);
   document.removeEventListener('keydown', onEscClose);
   closeModalBtn.removeEventListener('click', onCloseModalClick);
+  videoTrailerCont.innerHTML = '';
 }
 
 function addBtnListeners() {
