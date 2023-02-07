@@ -47,6 +47,7 @@ async function fetchTrends(page) {
 
 function getTrends() {
   loaderContainer.hidden = false; // запускає спінер
+  container.hidden = false;
   fetchTrends(page)
     .then(data => {
       markupContainer.innerHTML = '';
@@ -66,6 +67,7 @@ function trendsPaginationOn() {
   pagination.on('afterMove', event => {
     const currentPage = event.page;
     loaderContainer.hidden = false; // запускає спінер
+    container.hidden = false;
     fetchTrends(currentPage)
       .then(data => {
         markupContainer.innerHTML = '';
@@ -104,6 +106,7 @@ function onClickPagination(evt) {
   searchPaginationOn();
 
   async function fetchSearch(page) {
+    container.hidden = false;
     const inputValue = formEl.elements.searchQuery.value;
     const url = 'https://api.themoviedb.org/3/search/movie';
     const opt = {
@@ -113,6 +116,7 @@ function onClickPagination(evt) {
       page,
     };
     if (!opt.query) {
+      container.hidden = true;
       markupContainer.innerHTML =
         '<p class="movie-markup__message">Nothing found </p>';
       message.textContent =
@@ -131,6 +135,7 @@ function onClickPagination(evt) {
     // виводить повідомелення, коли приходить пустий результат і кидає помилку, яка потім обробляеться в сatch
     console.log(!response.data.total_results);
     if (!response.data.total_results) {
+      container.hidden = true;
       markupContainer.innerHTML =
         '<p class="movie-markup__message">Nothing found </p>';
       message.textContent =
@@ -157,6 +162,7 @@ function onClickPagination(evt) {
 
   function getSearch() {
     loaderContainer.hidden = false; // запускає спінер
+    container.hidden = false;
     fetchSearch(page)
       .then(data => {
         markupContainer.innerHTML = '';
@@ -176,6 +182,7 @@ function onClickPagination(evt) {
     queryPagination.on('afterMove', event => {
       const currentPage = event.page;
       loaderContainer.hidden = false; // запускає спінер
+      container.hidden = false;
       fetchSearch(currentPage)
         .then(data => {
           markupContainer.innerHTML = '';
