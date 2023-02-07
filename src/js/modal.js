@@ -1,10 +1,14 @@
+import axios from 'axios';
+
 const openModal = document.querySelector('.movie-markup');
 
 const modal = document.querySelector('[data-modal]');
 const modalMarkup = document.querySelector('.modal-film');
 
 let closeModalBtn = '';
+let videoTrailerCont = '';
 let movieItem = null;
+const API_KEY = '63240915768e2fa639cf91287e69284e';
 
 openModal.addEventListener('click', onOpenModalClick);
 
@@ -65,6 +69,20 @@ function addMarkup(id) {
     }
 
     movieItem = parsedItems.filter(a => a.id === Number(id))[0];
+
+    fetchTrailer(movieItem.id)
+      .then(response => {
+        videoTrailerCont = document.querySelector(
+          '.modal_youtube_video_container'
+        );
+
+        const movieTrailer = response.results.filter(
+          a => a.name === 'Legacy Trailer' || 'Official Trailer'
+        );
+
+        videoTrailerCont.innerHTML = `<iframe class="modal_youtube_video" width="240" height="180" src="https://www.youtube.com/embed/${movieTrailer[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      })
+      .catch(err => console.log(err));
 
     const genreId = [];
 
@@ -135,6 +153,7 @@ function addMarkup(id) {
           id
         )}>add to queue</button>
       </div>
+      <div class="modal_youtube_video_container"></div>
       </div>
     </div>`;
   } catch (err) {
@@ -164,6 +183,7 @@ function closeModal() {
   modal.removeEventListener('click', onBackdropClick);
   document.removeEventListener('keydown', onEscClose);
   closeModalBtn.removeEventListener('click', onCloseModalClick);
+  videoTrailerCont.innerHTML = '';
 }
 
 function addBtnListeners() {
@@ -208,4 +228,12 @@ function getIsDisabled(listType, filmId) {
   }
 
   return '';
+}
+
+async function fetchTrailer(idMovie) {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${idMovie}/videos?api_key=${API_KEY}`
+  );
+
+  return response.data;
 }

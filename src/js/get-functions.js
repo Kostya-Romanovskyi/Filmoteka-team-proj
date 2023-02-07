@@ -1,86 +1,20 @@
-function getTrendings(trendingTime, apiKey) {
-  const loaderContainer = document.querySelector('.loader-container');
-  const time = trendingTime;
-  const key = apiKey;
-
-  loaderContainer.hidden = false; // запускає спінер
-
-  fetchTrending(time, key)
-    .then(movies => {
-      localStorage.setItem(
-        'currentPage',
-        JSON.stringify({
-          type: 'trending',
-          result: movies,
-        })
-      );
-
-      render(movies.results); // рендер карток
-    })
-    .catch(error => {
-      console.log(error);
-    })
-    .finally(() => {
-      loaderContainer.hidden = true; // виключає спінер
-    });
-
-  async function fetchTrending(
-    trendingTime = 'week',
-    apiKey = '63240915768e2fa639cf91287e69284e'
-  ) {
+async function getGenres(apiKey = '63240915768e2fa639cf91287e69284e') {
+  const fetchGenres = async () => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/${trendingTime}?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
     );
     const movies = await response.json();
     return movies;
-  }
-}
+  };
 
-function getMoviesByName(
-  searchName,
-  page = 1,
-  apiKey = '63240915768e2fa639cf91287e69284e'
-) {
-  const loaderContainer = document.querySelector('.loader-container');
-  const message = document.querySelector('.message');
-  const markupContainer = document.querySelector('.movie-markup');
-
-  loaderContainer.hidden = false; // Включає спіннер
-  fetchMovies(searchName, page, apiKey)
-    .then(movies => {
-      if (!movies.total_results) {
-        markupContainer.innerHTML =
-          '<p class="movie-markup__message">Nothing found </p>';
-        message.textContent =
-          'Search result not successful. Enter the correct movie name and';
-        throw new Error(
-          'Search result not successful. Enter the correct movie name and'
-        );
-      }
-
-      localStorage.setItem(
-        'currentPage',
-        JSON.stringify({
-          type: 'serched',
-          result: movies,
-        })
-      );
-      render(movies.results);
+  await fetchGenres()
+    .then(data => {
+      // console.log(typeof JSON.stringify(data.genres));
+      localStorage.setItem('localGenres', JSON.stringify(data.genres));
     })
     .catch(error => {
       console.log(error);
-    })
-    .finally(() => {
-      loaderContainer.hidden = true; // виключає спіннер
     });
-
-  async function fetchMovies(searchName, page, apiKey) {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchName}&page=${page}`
-    );
-    const movies = await response.json();
-    return movies;
-  }
 }
 
 function render(movies) {
@@ -123,4 +57,4 @@ function render(movies) {
     .join('');
 }
 
-export { getTrendings, getMoviesByName, render };
+export { render, getGenres };
