@@ -17,10 +17,7 @@
 
 .modal-film {
     overflow: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 48px;
-    padding-bottom: 40px;
+    padding: 48px 20px 46px 20px;
     position: absolute;
     top: 100px;
     //   top: 50%;
@@ -36,9 +33,11 @@
     @media screen and(min-width:768px) {
         width: 704px;
         top: 60px;
+        padding: 40px 72px 40px 36px;
     }
     @media screen and(min-width:1024px) {
         width: 806px;
+        padding: 40px 12px;
     }
 }
 .modal-film__content {
@@ -93,6 +92,9 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 1.15;
+
+    text-transform: uppercase;
+
     margin-bottom: 20px;
 }
 .modal-film__list {
