@@ -10,7 +10,9 @@ const container = document.getElementById('tui-pagination-container');
 const loaderContainer = document.querySelector('.loader-container');
 const message = document.querySelector('.message');
 
-getGenres();
+// if (!localStorage['localGenres']) {
+
+// }
 
 const pagination = new Pagination(container, {
   totalItems: 0,
@@ -45,9 +47,15 @@ async function fetchTrends(page) {
   return response.data;
 }
 
-function getTrends() {
+async function getTrends() {
   loaderContainer.hidden = false; // запускає спінер
+  
   container.hidden = false;
+
+  if (!localStorage['localGenres']) {
+    await getGenres();
+  }
+
   fetchTrends(page)
     .then(data => {
       markupContainer.innerHTML = '';

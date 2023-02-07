@@ -1,4 +1,4 @@
-function getGenres(apiKey = '63240915768e2fa639cf91287e69284e') {
+async function getGenres(apiKey = '63240915768e2fa639cf91287e69284e') {
   const fetchGenres = async () => {
     const response = await fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
@@ -7,7 +7,7 @@ function getGenres(apiKey = '63240915768e2fa639cf91287e69284e') {
     return movies;
   };
 
-  fetchGenres()
+  await fetchGenres()
     .then(data => {
       // console.log(typeof JSON.stringify(data.genres));
       localStorage.setItem('localGenres', JSON.stringify(data.genres));
