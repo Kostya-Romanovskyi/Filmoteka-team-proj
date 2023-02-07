@@ -40,12 +40,15 @@ function render(movies) {
       return `
         <li class="card__item" data-id=${movie.id}>
           <a class="card__link" href="">
-            <img class="card__img" src="${imageSrc}" alt="${movie.title}">
+            <img class="card__img" src="${imageSrc}" alt="${
+        movie.title
+      }" loading="lazy">
             <div>
               <p class="card__title">${movie.title}</p>
               <div class="card__container">
                 <p class="card__genres"
                 ${movie.genre_ids?.length ? '' : 'hidden'}>${cardGenres}</p>
+                <p class="delimeter">.</p>
                 <p class="card__year" ${
                   movie.release_date?.length ? '' : 'hidden'
                 }> ${parseInt(movie.release_date)}</p>
