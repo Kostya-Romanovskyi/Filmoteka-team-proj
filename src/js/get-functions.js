@@ -28,6 +28,19 @@ function render(movies) {
         ? 'https://cdn.pixabay.com/photo/2016/12/14/23/08/page-not-found-1907792_960_720.jpg'
         : `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
+      let delimeterValue;
+      if (movie.genre_ids.length) {
+        if (movie.release_date.length) {
+          delimeterValue = '';
+        } else {
+          delimeterValue = 'style="display: none;"';
+          console.log(delimeterValue);
+        }
+      } else {
+        delimeterValue = 'style="display: none;"';
+        console.log(delimeterValue);
+      }
+
       const cardGenres = genres
         .filter(genre => {
           if (movie.genre_ids.includes(genre.id)) {
@@ -47,10 +60,11 @@ function render(movies) {
               <p class="card__title">${movie.title}</p>
               <div class="card__container">
                 <p class="card__genres"
-                ${movie.genre_ids?.length ? '' : 'hidden'}>${cardGenres}</p>
-                <p class="delimeter">.</p>
+                ${movie.genre_ids.length ? '' : 'hidden'}>${cardGenres}</p>
+                <p class="delimeter" ${delimeterValue}>.</p>
+                
                 <p class="card__year" ${
-                  movie.release_date?.length ? '' : 'hidden'
+                  movie.release_date.length ? '' : 'hidden'
                 }> ${parseInt(movie.release_date)}</p>
               </div>
             </div>
