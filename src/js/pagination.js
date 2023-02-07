@@ -47,6 +47,7 @@ async function fetchTrends(page) {
 
 function getTrends() {
   loaderContainer.hidden = false; // запускає спінер
+  container.hidden = false;
   fetchTrends(page)
     .then(data => {
       markupContainer.innerHTML = '';
@@ -113,6 +114,7 @@ function onClickPagination(evt) {
       page,
     };
     if (!opt.query) {
+      container.hidden = true;
       markupContainer.innerHTML =
         '<p class="movie-markup__message">Nothing found </p>';
       message.textContent =
@@ -131,6 +133,7 @@ function onClickPagination(evt) {
     // виводить повідомелення, коли приходить пустий результат і кидає помилку, яка потім обробляеться в сatch
     console.log(!response.data.total_results);
     if (!response.data.total_results) {
+      container.hidden = true;
       markupContainer.innerHTML =
         '<p class="movie-markup__message">Nothing found </p>';
       message.textContent =
