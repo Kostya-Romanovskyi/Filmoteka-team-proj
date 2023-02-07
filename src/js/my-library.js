@@ -9,9 +9,9 @@ btnWatched.addEventListener('click', renderLocalWatchedMovies);
 
 try {
   const inWatched = JSON.parse(localStorage.getItem('watched'));
+  btnWatched.classList.add('btn-active-lbr');
   render(inWatched);
 } catch (error) {
-  console.log(error.name);
   markupContainer.innerHTML =
     '<p class="movie-markup__message">Watched is empty </p>';
 }
@@ -19,9 +19,12 @@ try {
 function renderLocalWatchedMovies() {
   try {
     const inWatched = JSON.parse(localStorage.getItem('watched'));
+    btnWatched.classList.add('btn-active-lbr');
+    btnQueue.classList.remove('btn-active-lbr');
     render(inWatched);
   } catch (error) {
-    console.log(error.name);
+    btnWatched.classList.add('btn-active-lbr');
+    btnQueue.classList.remove('btn-active-lbr');
     markupContainer.innerHTML =
       '<p class="movie-markup__message">Watched is empty </p>';
   }
@@ -30,8 +33,12 @@ function renderLocalWatchedMovies() {
 function renderLocalQueueMovies() {
   try {
     const inQueue = JSON.parse(localStorage.getItem('queue'));
+    btnQueue.classList.add('btn-active-lbr');
+    btnWatched.classList.remove('btn-active-lbr');
     render(inQueue);
   } catch (error) {
+    btnQueue.classList.add('btn-active-lbr');
+    btnWatched.classList.remove('btn-active-lbr');
     markupContainer.innerHTML =
       '<p class="movie-markup__message">Queue is empty</p>';
   }

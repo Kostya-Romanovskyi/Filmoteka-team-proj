@@ -54,8 +54,7 @@
     border-radius: 5px;
   
     &:hover,
-    :focus,
-    :active {
+    :focus, {
       border: 1px solid $active-color;
       background: $active-color;
       box-shadow: (0px 8px 43px $button-header-library);
@@ -73,6 +72,17 @@
       box-shadow: (0px 8px 43px $button-header-library);
     }
   }
+
+.btn-active-lbr {
+  border: 1px solid $active-color;
+    background: $active-color;
+    box-shadow: (0px 8px 43px $button-header-library);
+  
+    transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .header__lib {
   min-height: 230px;
   padding: 40px 0 0 0;
