@@ -1,4 +1,6 @@
 import axios from 'axios';
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
 const openModal = document.querySelector('.movie-markup');
 
@@ -7,6 +9,9 @@ const modalMarkup = document.querySelector('.modal-film');
 
 let closeModalBtn = '';
 let videoTrailerCont = '';
+let openTrailerCont = '';
+let instance = '';
+
 let movieItem = null;
 const API_KEY = '63240915768e2fa639cf91287e69284e';
 
@@ -73,14 +78,25 @@ function addMarkup(id) {
     fetchTrailer(movieItem.id)
       .then(response => {
         videoTrailerCont = document.querySelector(
-          '.modal_youtube_video_container'
+          '.modal_youtube_btn_container'
         );
 
-        const movieTrailer = response.results.filter(
-          a => a.name === 'Legacy Trailer' || 'Official Trailer'
-        );
+        const movieTrailer =
+          response.results.filter(
+            a =>
+              a.name === 'Legacy Trailer' ||
+              'Official Trailer' ||
+              'Official Teaser'
+          ) || response.results[0];
 
-        videoTrailerCont.innerHTML = `<iframe class="modal_youtube_video" width="240" height="180" src="https://www.youtube.com/embed/${movieTrailer[0].key}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        videoTrailerCont.innerHTML = `<button type="button" class="open-trailer modal_film__btn">Watch trailer</button>`;
+        openTrailerCont = document.querySelector('.open-trailer');
+        openTrailerCont.addEventListener('click', () => {
+          instance = basicLightbox.create(`
+    <iframe src="https://www.youtube.com/embed/${movieTrailer[0].key}?autoplay=1" allow="autoplay" allowfullscreen="" width="560" height="315" frameborder="0"></iframe>
+`);
+          instance.show();
+        });
       })
       .catch(err => console.log(err));
 
@@ -153,7 +169,7 @@ function addMarkup(id) {
           id
         )}>add to queue</button>
       </div>
-      <div class="modal_youtube_video_container"></div>
+      <div class="modal_youtube_btn_container modal-film__buttons"></div>
       </div>
     </div>`;
   } catch (err) {
@@ -183,6 +199,10 @@ function closeModal() {
   modal.removeEventListener('click', onBackdropClick);
   document.removeEventListener('keydown', onEscClose);
   closeModalBtn.removeEventListener('click', onCloseModalClick);
+  if (instance) {
+    instance.close();
+  }
+
   videoTrailerCont.innerHTML = '';
 }
 
