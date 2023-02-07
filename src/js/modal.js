@@ -145,13 +145,13 @@ function addMarkup(id) {
       </div>
       <div class="modal-film__buttons">
         <button class="modal_film__btn" id="add_to_watched_btn" type="button" ${getIsDisabled(
-          'watched',
-          id
-        )}>add to Watched</button>
-        <button class="modal_film__btn" id="add_to_queue_btn" type="button" ${getIsDisabled(
           'queue',
           id
-        )}>add to queue</button>
+        )}>${getButtonText('watched', id)}</button>
+        <button class="modal_film__btn" id="add_to_queue_btn" type="button" ${getIsDisabled(
+          'watched',
+          id
+        )}>${getButtonText('queue', id)}</button>
       </div>
       <div class="modal_youtube_video_container"></div>
       </div>
@@ -191,12 +191,14 @@ function addBtnListeners() {
   const addToQueueBtn = document.querySelector('#add_to_queue_btn');
 
   addToWatchedBtn.addEventListener('click', () => {
-    addToWatchedBtn.disabled = true;
-    addFilmToList('watched', movieItem);
+    toggleFilmToList('watched', movieItem);
+    addToQueueBtn.disabled = !!getIsDisabled('watched', movieItem.id);
+    addToWatchedBtn.textContent = getButtonText('watched', movieItem.id);
   });
   addToQueueBtn.addEventListener('click', () => {
-    addToQueueBtn.disabled = true;
-    addFilmToList('queue', movieItem);
+    toggleFilmToList('queue', movieItem);
+    addToWatchedBtn.disabled = !!getIsDisabled('queue', movieItem.id);
+    addToQueueBtn.textContent = getButtonText('queue', movieItem.id);
   });
 }
 
@@ -204,12 +206,21 @@ function addBtnListeners() {
     @param 'watched' | 'queue' listType
     @param { Film } film
 */
-function addFilmToList(listType, film) {
+function toggleFilmToList(listType, film) {
   const storageKey = listType;
 
   const filmList = JSON.parse(localStorage.getItem(storageKey)) || [];
+  const filmIndex = filmList.findIndex(filmItem => filmItem.id === film.id);
 
-  filmList.push(film);
+  if (filmIndex >= 0) {
+    filmList.splice(filmIndex, 1);
+
+    if (window.location.pathname === '/library.html') {
+      document.querySelector(`[data-id="${film.id}"]`)?.remove();
+    }
+  } else {
+    filmList.push(film);
+  }
 
   localStorage.setItem(storageKey, JSON.stringify(filmList));
 }
@@ -228,6 +239,22 @@ function getIsDisabled(listType, filmId) {
   }
 
   return '';
+}
+
+function getButtonText(listType, filmId) {
+  const filmList = JSON.parse(localStorage.getItem(listType));
+
+  if (!filmList) {
+    return `Add to ${listType}`;
+  }
+
+  const isInList = filmList.find(film => Number(filmId) === film.id);
+
+  if (isInList) {
+    return `Delete from ${listType}`;
+  }
+
+  return `Add to ${listType}`;
 }
 
 async function fetchTrailer(idMovie) {
