@@ -18,6 +18,8 @@ function onOpenModalClick(e) {
 
   if (e.target !== e.currentTarget) {
     addMarkup(movieId);
+    const btnUp = document.querySelector('.btn-up');
+    btnUp.classList.add('btn-up_hide');
 
     closeModalBtn = document.querySelector('.close-modal');
     modal.classList.remove('is-hidden');
