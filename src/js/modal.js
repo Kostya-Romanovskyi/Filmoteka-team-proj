@@ -217,7 +217,7 @@ function toggleFilmToList(listType, film) {
   if (filmIndex >= 0) {
     filmList.splice(filmIndex, 1);
 
-    if (window.location.pathname === '/library.html') {
+    if (window.location.pathname.includes('/library.html')) {
       document.querySelector(`[data-id="${film.id}"]`)?.remove();
     }
   } else {
