@@ -5,6 +5,7 @@ import '../sass/_pagination-btn.scss';
 import { render, getGenres } from './get-functions';
 
 const markupContainer = document.querySelector('.movie-markup');
+const msgContainer = document.querySelector('.msg-container');
 const formEl = document.querySelector('.search-form');
 const container = document.getElementById('tui-pagination-container');
 const loaderContainer = document.querySelector('.loader-container');
@@ -61,7 +62,7 @@ async function getTrends() {
       render(data.results);
     })
     .catch(error => {
-      console.log(error);
+      // console.log(error);
     })
     .finally(() => {
       loaderContainer.hidden = true; // виключає спінер
@@ -86,7 +87,7 @@ function trendsPaginationOn() {
         });
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       })
       .finally(() => {
         loaderContainer.hidden = true; // виключає спінер
@@ -124,8 +125,9 @@ function onClickPagination(evt) {
     };
     if (!opt.query) {
       container.hidden = true;
-      markupContainer.innerHTML =
-        '<p class="movie-markup__message">Nothing found </p>';
+      markupContainer.innerHTML = '';
+      msgContainer.innerHTML =
+        '<p class="msg-container__message">Nothing found </p>';
       message.textContent =
         'Search result not successful. Enter the correct movie name and';
       setTimeout(() => {
@@ -140,11 +142,11 @@ function onClickPagination(evt) {
     const response = await axios.get(`${url}?${meta}`);
 
     // виводить повідомелення, коли приходить пустий результат і кидає помилку, яка потім обробляеться в сatch
-    console.log(!response.data.total_results);
     if (!response.data.total_results) {
       container.hidden = true;
-      markupContainer.innerHTML =
-        '<p class="movie-markup__message">Nothing found </p>';
+      markupContainer.innerHTML = '';
+      msgContainer.innerHTML =
+        '<p class="msg-container__message">Nothing found </p>';
       message.textContent =
         'Search result not successful. Enter the correct movie name and';
       setTimeout(() => {
@@ -178,7 +180,7 @@ function onClickPagination(evt) {
         render(data.results);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       })
       .finally(() => {
         loaderContainer.hidden = true; // виключає спіннер
@@ -202,7 +204,7 @@ function onClickPagination(evt) {
           });
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         })
         .finally(() => {
           loaderContainer.hidden = true; // виключає спіннер

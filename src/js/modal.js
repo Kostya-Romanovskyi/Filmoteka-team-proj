@@ -259,18 +259,18 @@ function updateMarkup(action, filmList, listType, film) {
     const queueActive = document
       .querySelector('.js-queue')
       .classList.contains('btn-active-lbr');
-    const markupContainer = document.querySelector('.movie-markup');
+    const msgContainer = document.querySelector('.msg-container');
 
     document.querySelector(`[data-id="${film.id}"]`)?.remove();
 
     if (!document.querySelector('.card__item')) {
       if (watchedActive && listType === 'watched') {
-        markupContainer.innerHTML =
-          '<p class="movie-markup__message">Watched is empty</p>';
+        msgContainer.innerHTML =
+          '<p class="msg-container__message">Watched is empty</p>';
       }
       if (queueActive && listType === 'queue') {
-        markupContainer.innerHTML =
-          '<p class="movie-markup__message">Queue is empty</p>';
+        msgContainer.innerHTML =
+          '<p class="msg-container__message">Queue is empty</p>';
       }
     }
   }
