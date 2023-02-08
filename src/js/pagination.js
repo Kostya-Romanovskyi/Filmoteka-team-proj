@@ -23,7 +23,7 @@ trendsPaginationOn();
 formEl.addEventListener('submit', onClickPagination);
 
 async function fetchTrends(page) {
-  const url = 'https://api.themoviedb.org/3/trending/movie/week';
+  const url = 'https://api.themoviedb.org/3/trending/movie/day';
   const key = '63240915768e2fa639cf91287e69284e';
   const opt = {
     api_key: `${key}`,
