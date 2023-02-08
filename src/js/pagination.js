@@ -10,10 +10,6 @@ const container = document.getElementById('tui-pagination-container');
 const loaderContainer = document.querySelector('.loader-container');
 const message = document.querySelector('.message');
 
-// if (!localStorage['localGenres']) {
-
-// }
-
 const pagination = new Pagination(container, {
   totalItems: 0,
   itemsPerPage: 20,
@@ -49,8 +45,10 @@ async function fetchTrends(page) {
 
 async function getTrends() {
   loaderContainer.hidden = false; // запускає спінер
-  
-  container.hidden = false;
+
+  setTimeout(() => {
+    container.hidden = false;
+  }, 1000);
 
   if (!localStorage['localGenres']) {
     await getGenres();
@@ -96,6 +94,8 @@ function trendsPaginationOn() {
       });
   });
 }
+
+// throttle(trendsPaginationOn, 1000);
 
 function onClickPagination(evt) {
   evt.preventDefault();
