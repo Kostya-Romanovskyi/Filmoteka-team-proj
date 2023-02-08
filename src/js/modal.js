@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import { render } from './get-functions';
 
 const openModal = document.querySelector('.movie-markup');
 
@@ -236,15 +237,40 @@ function toggleFilmToList(listType, film) {
 
   if (filmIndex >= 0) {
     filmList.splice(filmIndex, 1);
-
-    if (window.location.pathname.includes('/library.html')) {
-      document.querySelector(`[data-id="${film.id}"]`)?.remove();
-    }
+    updateMarkup('deleted', filmList, listType, film);
   } else {
     filmList.push(film);
+    updateMarkup('added', filmList, listType, film);
   }
 
   localStorage.setItem(storageKey, JSON.stringify(filmList));
+}
+
+function updateMarkup(action, filmList, listType, film) {
+  if (!window.location.pathname.includes('/library.html')) {
+    return;
+  }
+
+  if (action === 'deleted') {
+    return document.querySelector(`[data-id="${film.id}"]`)?.remove();
+  }
+
+  if (action === 'added') {
+    const watchedActive = document
+      .querySelector('.js-watched')
+      .classList.contains('btn-active-lbr');
+    const queueActive = document
+      .querySelector('.js-queue')
+      .classList.contains('btn-active-lbr');
+
+    if (watchedActive && listType === 'watched') {
+      render(filmList);
+    }
+
+    if (queueActive && listType === 'queue') {
+      render(filmList);
+    }
+  }
 }
 
 function getIsDisabled(listType, filmId) {
