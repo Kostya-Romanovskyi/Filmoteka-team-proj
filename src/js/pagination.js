@@ -46,10 +46,6 @@ async function fetchTrends(page) {
 async function getTrends() {
   loaderContainer.hidden = false; // запускає спінер
 
-  setTimeout(() => {
-    container.hidden = false;
-  }, 1000);
-
   if (!localStorage['localGenres']) {
     await getGenres();
   }
@@ -58,6 +54,9 @@ async function getTrends() {
     .then(data => {
       markupContainer.innerHTML = '';
       // console.log(data);
+      if (data) {
+        container.hidden = false;
+      }
       pagination.reset(data.total_results);
       render(data.results);
     })
