@@ -19,9 +19,9 @@ openModal.addEventListener('click', onOpenModalClick);
 
 function onOpenModalClick(e) {
   e.preventDefault();
-  const movieId = e.target.closest('li').getAttribute('data-id');
 
   if (e.target !== e.currentTarget) {
+    const movieId = e.target.closest('li').getAttribute('data-id');
     addMarkup(movieId);
 
     closeModalBtn = document.querySelector('.close-modal');
@@ -88,8 +88,9 @@ function addMarkup(id) {
               'Official Trailer' ||
               'Official Teaser'
           ) || response.results[0];
-
-        videoTrailerCont.innerHTML = `<button type="button" class="open-trailer modal_film__btn">Watch trailer</button>`;
+        if (movieTrailer[0].key) {
+          videoTrailerCont.innerHTML = `<button type="button" class="open-trailer modal_film__btn">Watch trailer</button>`;
+        }
         openTrailerCont = document.querySelector('.open-trailer');
         openTrailerCont.addEventListener('click', () => {
           instance = basicLightbox.create(`
