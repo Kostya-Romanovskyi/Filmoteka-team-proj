@@ -130,6 +130,10 @@
   }
 }
 
+.card__item:hover,.card__item:focus {
+opacity: 0.85;
+}
+
 // =======Стилі для кнопки-якоря============
 
 .btn-up {
