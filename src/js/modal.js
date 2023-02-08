@@ -252,7 +252,26 @@ function updateMarkup(action, filmList, listType, film) {
   }
 
   if (action === 'deleted') {
-    return document.querySelector(`[data-id="${film.id}"]`)?.remove();
+    const watchedActive = document
+      .querySelector('.js-watched')
+      .classList.contains('btn-active-lbr');
+    const queueActive = document
+      .querySelector('.js-queue')
+      .classList.contains('btn-active-lbr');
+    const markupContainer = document.querySelector('.movie-markup');
+
+    document.querySelector(`[data-id="${film.id}"]`)?.remove();
+
+    if (!document.querySelector('.card__item')) {
+      if (watchedActive && listType === 'watched') {
+        markupContainer.innerHTML =
+          '<p class="movie-markup__message">Watched is empty</p>';
+      }
+      if (queueActive && listType === 'queue') {
+        markupContainer.innerHTML =
+          '<p class="movie-markup__message">Queue is empty</p>';
+      }
+    }
   }
 
   if (action === 'added') {
