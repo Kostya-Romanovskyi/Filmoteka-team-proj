@@ -23,6 +23,7 @@ function render(movies) {
   const genres = JSON.parse(localStorage.getItem('localGenres'));
 
   msgContainer.innerHTML = '';
+  markupContainer.innerHTML = '';
 
   markupContainer.innerHTML = movies
     .map(movie => {
