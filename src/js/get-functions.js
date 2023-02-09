@@ -18,8 +18,11 @@ async function getGenres(apiKey = '63240915768e2fa639cf91287e69284e') {
 }
 
 function render(movies) {
+  const msgContainer = document.querySelector('.msg-container');
   const markupContainer = document.querySelector('.movie-markup');
   const genres = JSON.parse(localStorage.getItem('localGenres'));
+
+  msgContainer.innerHTML = '';
 
   markupContainer.innerHTML = movies
     .map(movie => {
